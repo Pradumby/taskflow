@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "TaskFlow API running" });
+  res.json({ message: "API is Running" });
 });
 
 module.exports = app;
