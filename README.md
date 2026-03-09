@@ -108,7 +108,7 @@ Anup Yadav
 Full Stack Developer  
 Tech Stack: MERN
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/Pradumby
 
 ## Project Structure
 
