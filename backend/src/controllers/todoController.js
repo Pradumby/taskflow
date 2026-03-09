@@ -33,3 +33,12 @@ exports.deleteTodo = asyncHandler(async (req, res) => {
     message: "Todo deleted",
   });
 });
+
+exports.toggleTodo = asyncHandler(async (req, res) => {
+  const todo = await todoService.toggleTodo(req.params.id, req.user._id);
+
+  res.json({
+    message: "Todo status updated",
+    todo,
+  });
+});

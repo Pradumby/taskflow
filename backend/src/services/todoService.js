@@ -10,7 +10,10 @@ const createTodo = async (data, userId) => {
 };
 
 const getTodos = async (userId) => {
-  const todos = await Todo.find({ user: userId });
+  const todos = await Todo.find({ user: userId }).populate(
+    "user",
+    "name email"
+  );
 
   return todos;
 };
@@ -28,9 +31,27 @@ const deleteTodo = async (todoId, userId) => {
   });
 };
 
+const toggleTodo = async (todoId, userId) => {
+  const todo = await Todo.findOne({
+    _id: todoId,
+    user: userId,
+  });
+
+  if (!todo) {
+    throw new Error("Todo not found");
+  }
+
+  todo.completed = !todo.completed;
+
+  await todo.save();
+
+  return todo;
+};
+
 module.exports = {
   createTodo,
   getTodos,
   updateTodo,
   deleteTodo,
+  toggleTodo,
 };
