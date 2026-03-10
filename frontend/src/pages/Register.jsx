@@ -1,14 +1,27 @@
 import { useState } from "react";
+import { registerUser } from "../services/authService";
 
 function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(name, email, password);
+    try {
+      const data = await registerUser({
+        name,
+        email,
+        password,
+      });
+
+      console.log(data);
+
+      alert("User registered successfully");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    }
   };
 
   return (
