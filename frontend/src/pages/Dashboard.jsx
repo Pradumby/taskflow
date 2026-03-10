@@ -1,7 +1,14 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+
 function Dashboard() {
+  const { logout } = useContext(AuthContext);
+
   return (
     <div>
       <h1>TaskFlow Dashboard</h1>
+
+      <button onClick={logout}>Logout</button>
     </div>
   );
 }

@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { loginUser } from "../services/authService";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { login } = useContext(AuthContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -14,7 +16,7 @@ function Login() {
         password,
       });
 
-      localStorage.setItem("token", data.token);
+      login(data.token);
 
       alert("Login successful");
     } catch (error) {
